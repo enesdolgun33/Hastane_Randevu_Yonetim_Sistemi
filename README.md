@@ -1,4 +1,4 @@
-# 🏥 HRYS - Hastane Randevu Yönetim Sistemi (v2.0 Enterprise)
+# 🏥 HRYS - Hastane Randevu Yönetim Sistemi
 
 HRYS, JavaFX ve SQLite kullanılarak geliştirilmiş, modern arayüze sahip, kapsamlı bir hastane otomasyon sistemidir. Proje, **Nesne Yönelimli Programlama (OOP)** prensiplerine ve **Yazılım Tasarım Desenlerine (Design Patterns)** tam uyumlu olarak, **MVC (Model-View-Controller)** mimarisiyle geliştirilmiştir.
 
