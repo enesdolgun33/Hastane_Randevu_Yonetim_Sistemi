@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.hastane_randevu_yonetim_sistemi.controllers.DoktorPanelController">
+
+    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #2c3e50; -fx-padding: 15 25;">
+        <Label text="HRYS" textFill="WHITE"> <font><Font name="System Bold" size="22.0" /></font> </Label>
+        <Label text="|  Doktor Paneli" textFill="#bdc3c7"> <font><Font size="18.0" /></font> </Label>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#cikisYap" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="🚪 Çıkış Yap" />
+    </HBox>
+
+    <TabPane fx:id="anaTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" style="-fx-background-color: #ecf0f1; -fx-tab-min-width: 120; -fx-tab-min-height: 40;">
+
+        <style>
+            .tab-header-background { -fx-background-color: #34495e; }
+            .tab-label { -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 0 0 0 10; }
+            .tab:selected { -fx-background-color: #ecf0f1; }
+            .tab:selected .tab-label { -fx-text-fill: #2c3e50; }
+            .tab:selected .ikon { -fx-fill: #2c3e50; } /* Seçilince ikon da koyu olsun */
+        </style>
+
+        <Tab text="Randevu Yönetimi">
+            <graphic>
+                <javafx.scene.shape.SVGPath styleClass="ikon" content="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="#2c3e50"
+                                            scaleX="0.8" scaleY="0.8" />
+            </graphic>
+            <SplitPane dividerPositions="0.7" style="-fx-background-color: transparent; -fx-padding: 20;">
+                <items>
+                    <AnchorPane style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);">
+                        <VBox spacing="15.0" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Label text="Randevu Listesi" textFill="#2c3e50"> <font><Font name="System Bold" size="18.0" /></font> </Label>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="Filtrele:" textFill="#7f8c8d" />
+                                <DatePicker fx:id="baslangicTarihSecici" prefWidth="120" promptText="Başlangıç" style="-fx-background-color: #f1f2f6;"/>
+                                <DatePicker fx:id="bitisTarihSecici" prefWidth="120" promptText="Bitiş" style="-fx-background-color: #f1f2f6;"/>
+                                <Button onAction="#randevulariListele" text="🔍 Getir" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" />
+                                <Button onAction="#tumunuGoster" text="🔄" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 5;" />
+                            </HBox>
+
+                            <CheckBox fx:id="chkIptalleriGoster" text="İptal Edilen Randevuları Göster" textFill="#e67e22" />
+
+                            <TableView fx:id="randevuTablosu" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+                                <columns>
+                                    <TableColumn fx:id="colHasta" prefWidth="180.0" text="Hasta Adı Soyadı" />
+                                    <TableColumn fx:id="colTarih" prefWidth="100.0" text="Tarih" />
+                                    <TableColumn fx:id="colSaat" prefWidth="80.0" text="Saat" />
+                                    <TableColumn fx:id="colDurum" prefWidth="100.0" text="Durum" />
+                                    <TableColumn fx:id="colNot" prefWidth="200.0" text="Doktor Notu" />
+                                </columns>
+                            </TableView>
+
+                            <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-padding: 10; -fx-background-radius: 5;">
+                                <Label text="İşlemler:" style="-fx-font-weight: bold;" />
+                                <Button onAction="#tamamlandiIsaretle" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 5;" text="✅ Tamamlandı" />
+                                <Button onAction="#gelmediIsaretle" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 5;" text="❌ Gelmedi" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Button onAction="#seciliHastaBilgisiniGoster" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-background-radius: 5;" text="👤 Hasta Detayı" />
+                            </HBox>
+                        </VBox>
+                    </AnchorPane>
+
+                    <AnchorPane>
+                        <VBox spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+                            <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-padding: 15;" VBox.vgrow="ALWAYS">
+                                <Label text="🔎 Hasta Sorgula" textFill="#e67e22"> <font><Font name="System Bold" size="14.0" /></font> </Label>
+                                <HBox spacing="5"> <TextField fx:id="txtHastaAra" promptText="TC, Ad, Soyad..." HBox.hgrow="ALWAYS" style="-fx-background-radius: 5;"/> <Button onAction="#hastaAra" text="Bul" style="-fx-background-radius: 5;" /> </HBox>
+                                <TableView fx:id="tblHastaArama" VBox.vgrow="ALWAYS" style="-fx-border-color: #ecf0f1;">
+                                    <columns>
+                                        <TableColumn fx:id="colHAd" text="Ad" />
+                                        <TableColumn fx:id="colHSoyad" text="Soyad" />
+                                        <TableColumn fx:id="colHTc" text="TC" />
+                                        <TableColumn fx:id="colHTel" text="Tel" />
+                                        <TableColumn fx:id="colHCinsiyet" text="Cinsiyet" />
+                                        <TableColumn fx:id="colHDogum" text="Doğum T." />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+
+                            <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-padding: 15;" prefHeight="250">
+                                <Label text="📝 Muayene Notu" textFill="#8e44ad"> <font><Font name="System Bold" size="14.0" /></font> </Label>
+                                <TextArea fx:id="muayeneNotuAlani" wrapText="true" style="-fx-control-inner-background: #fdfefe;" VBox.vgrow="ALWAYS" />
+                                <Button onAction="#notuKaydet" text="Kaydet" maxWidth="Infinity" style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-background-radius: 5;" />
+                                <Label fx:id="durumLabel" textFill="#2980b9" />
+                            </VBox>
+
+                        </VBox>
+                    </AnchorPane>
+                </items>
+            </SplitPane>
+        </Tab>
+
+        <Tab text="Mesai Ayarları">
+            <graphic>
+                <javafx.scene.shape.SVGPath styleClass="ikon" content="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L3.16 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" fill="#2c3e50"
+                                            scaleX="0.8" scaleY="0.8" />
+            </graphic>
+            <AnchorPane>
+                <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                    <VBox alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-padding: 40;">
+                        <Label text="Haftalık Çalışma Planı" textFill="#2c3e50" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                        <Label text="Uygun olduğunuz gün ve saatleri aşağıdan düzenleyebilirsiniz." textFill="#7f8c8d" />
+                        <Region prefHeight="20" />
+                        <GridPane fx:id="mesaiGrid" hgap="30" vgap="15" alignment="CENTER" />
+                        <Region prefHeight="30" />
+                        <Button onAction="#mesaiKaydet" text="PLANLAMAYI KAYDET" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 40; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;" />
+                        <Label fx:id="mesaiDurumLabel" textFill="BLUE" style="-fx-padding: 10;" />
+                    </VBox>
+                </VBox>
+            </AnchorPane>
+        </Tab>
+
+        <Tab text="Profilim">
+            <graphic>
+                <javafx.scene.shape.SVGPath styleClass="ikon" content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#2c3e50"
+                                            scaleX="0.8" scaleY="0.8" />
+            </graphic>
+            <AnchorPane>
+                <children>
+                    <VBox alignment="TOP_CENTER" spacing="0" maxWidth="700" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);" AnchorPane.topAnchor="40.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+                        <VBox alignment="CENTER" prefHeight="120" style="-fx-background-color: linear-gradient(to right, #34495e 0%, #2c3e50 100%); -fx-background-radius: 15 15 0 0;">
+
+                        </VBox>
+
+                        <VBox alignment="CENTER" spacing="5" style="-fx-padding: -50 0 20 0;">
+                            <VBox alignment="CENTER" prefWidth="100" prefHeight="100" maxWidth="100" maxHeight="100" style="-fx-background-color: #ecf0f1; -fx-background-radius: 50; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 50; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);">
+                                <Label fx:id="lblProfilHarfler" text="DR" textFill="#2c3e50"> <font><Font name="System Bold" size="36.0" /></font> </Label>
+                            </VBox>
+                            <Label text="Kişisel Bilgiler &amp; Güvenlik" textFill="#7f8c8d"> <font><Font size="14.0" /></font> </Label>
+                        </VBox>
+
+                        <GridPane hgap="30" vgap="20" alignment="CENTER" style="-fx-padding: 30;">
+                            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0"> <Label text="ADINIZ" style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #95a5a6;" /> <TextField fx:id="profilAdField" disable="true" style="-fx-background-color: #f8f9fa;" /> </VBox>
+                            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0"> <Label text="SOYADINIZ" style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #95a5a6;" /> <TextField fx:id="profilSoyadField" disable="true" style="-fx-background-color: #f8f9fa;" /> </VBox>
+
+                            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1"> <Label text="BRANŞ" style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #95a5a6;" /> <TextField fx:id="profilBransField" disable="true" style="-fx-background-color: #f8f9fa;" /> </VBox>
+                            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1"> <Label text="TC KİMLİK" style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #95a5a6;" /> <TextField fx:id="profilTcField" disable="true" style="-fx-background-color: #f8f9fa;" /> </VBox>
+
+                            <Region prefHeight="1" style="-fx-background-color: #ecf0f1;" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+
+                            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3"> <Label text="TELEFON" style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #3498db;" /> <TextField fx:id="profilTelefonField" style="-fx-background-radius: 5;" /> </VBox>
+                            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3"> <Label text="E-POSTA" style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #3498db;" /> <TextField fx:id="profilEmailField" style="-fx-background-radius: 5;" /> </VBox>
+                            <VBox spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="4"> <Label text="ŞİFRE" style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" /> <TextField fx:id="profilSifreField" style="-fx-background-radius: 5;" /> </VBox>
+                        </GridPane>
+
+                        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 0 0 30 0;">
+                            <Button onAction="#profilGuncelle" text="DEĞİŞİKLİKLERİ KAYDET" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 30; -fx-cursor: hand;" />
+                            <Label fx:id="profilDurumLabel" textFill="GREEN" />
+                        </VBox>
+                    </VBox>
+                </children>
+            </AnchorPane>
+        </Tab>
+
+    </TabPane>
+</VBox>
