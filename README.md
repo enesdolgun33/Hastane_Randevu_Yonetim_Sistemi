@@ -4,10 +4,10 @@ HRYS, JavaFX ve SQLite kullanılarak geliştirilmiş, modern arayüze sahip, kap
 
 ## 👥 Proje Ekibi
 
-| Adı Soyadı      | Öğrenci No |
-| :-------------- | :--------- |
-| **Enes Dolgun** | 1230505037 |
-| **Enes Turan**  | 1230505002 |
+| Adı Soyadı                                         | Öğrenci No |
+| :------------------------------------------------- | :--------- |
+| [**Enes Dolgun**](https://github.com/enesdolgun33) | 1230505037 |
+| [**Enes Turan**](https://github.com/Enes-Turan)    | 1230505002 |
 
 ## 🚀 Özellikler
 
