@@ -13,8 +13,6 @@ HRYS, JavaFX ve SQLite kullanılarak geliştirilmiş, modern arayüze sahip, kap
 
 ### 👨‍⚕️ Doktor Modülü
 
-
-
 - **Güvenli Giriş:** TC ve şifre ile yetkilendirilmiş giriş.
 - **Randevu Yönetimi (Dashboard):** Bekleyen randevuları listeleme, filtreleme (tarih/durum).
 - **İşlem Menüsü:** Randevuları "Tamamlandı" veya "Gelmedi" olarak işaretleme (State Deseni).
