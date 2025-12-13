@@ -42,17 +42,6 @@ Proje, endüstri standartlarına uygun olarak aşağıdaki desenleri kullanır:
 | **STATE**                       | Randevu durumlarının (Bekliyor, Tamamlandı, İptal, Gelmedi) `IRandevuDurum` arayüzü ile yönetilmesi için.  |
 | **DAO (Data Access Object)**    | `RandevuDAO` sınıfı ile veritabanı işlemlerinin (SQL) Controller'dan soyutlanması için.                    |
 
-## 📋 Gereksinim Karşılama Tablosu (Ödev Kontrolü)
-
-- [x] **CRUD İşlemleri:** Hasta Kayıt (C), Randevu Listeleme (R), Profil Güncelleme (U), Mesai Silme (D).
-- [x] **Singleton Deseni:** Veritabanı ve Oturum yönetiminde mevcut.
-- [x] **Factory Deseni:** Kullanıcı üretiminde mevcut.
-- [x] **Observer Deseni:** Randevu bildirim sisteminde mevcut.
-- [x] **State Deseni:** Randevu durum geçişlerinde mevcut.
-- [x] **Ekstra Desen 1 (MVC):** Proje genelinde uygulandı.
-- [x] **Ekstra Desen 2 (DAO):** Veritabanı katmanında uygulandı.
-- [x] **Abstract Class (En az 2):** `BaseEntity` ve `Kullanici` sınıfları abstract olarak tasarlandı.
-
 ## 🚀 Kurulum ve Çalıştırma
 
 1.  Projeyi bilgisayarınıza indirin/klonlayın.
