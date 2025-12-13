@@ -2,6 +2,11 @@
 
 HRYS, JavaFX ve SQLite kullanılarak geliştirilmiş, modern arayüze sahip, kapsamlı bir hastane otomasyon sistemidir. Proje, **Nesne Yönelimli Programlama (OOP)** prensiplerine ve **Yazılım Tasarım Desenlerine (Design Patterns)** tam uyumlu olarak, **MVC (Model-View-Controller)** mimarisiyle geliştirilmiştir.
 
+## 👥 Proje Ekibi
+
+| Enes Dolgun | 1230505037 |
+| Enes Turan | 1230505002 |
+
 ## 🚀 Özellikler
 
 ### 👨‍⚕️ Doktor Modülü
@@ -52,5 +57,5 @@ Proje, endüstri standartlarına uygun olarak aşağıdaki desenleri kullanır:
 
 ---
 
-**Geliştirici:** [Enes Dolgun]
+**Geliştiriciler:** [Enes Dolgun, Enes Turan]
 **Ders:** Yazılım Mimarisi ve Tasarımı
