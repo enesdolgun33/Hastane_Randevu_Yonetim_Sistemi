@@ -58,6 +58,3 @@ Proje, endüstri standartlarına uygun olarak aşağıdaki desenleri kullanır:
 5.  _(Veritabanı `hastane.db` dosyası otomatik oluşturulacaktır.)_
 
 ---
-
-**Geliştiriciler:** [Enes Dolgun, Enes Turan]
-**Ders:** Yazılım Mimarisi ve Tasarımı
